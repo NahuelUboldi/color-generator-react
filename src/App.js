@@ -1,24 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Header from './components/Header';
+import Main from './components/Main';
 
 function App() {
+  const [color, setColor] = useState('f15025');
+  const [list, setList] = useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    generateColors(color);
+  };
+  const generateColors = (color) => {
+    const ColorScheme = require('color-scheme');
+    const scheme = new ColorScheme();
+    scheme.from_hex(color).scheme('mono').variation('default');
+    let colors = scheme.colors();
+    setList([color, ...colors]);
+    console.log('colores: ' + colors);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Main
+        color={color}
+        setColor={setColor}
+        handleSubmit={handleSubmit}
+        list={list}
+      />
+    </>
   );
 }
 
