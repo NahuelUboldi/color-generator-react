@@ -1,10 +1,11 @@
 import React from 'react';
 import ColorInput from './ColorInput';
 import ColorsContainer from './ColorsContainer';
+import SingleColor from './SingleColor';
 
 function Main({ ...props }) {
   const { color, setColor, handleSubmit, list } = props;
-  console.log(props);
+
   return (
     <main>
       <ColorInput
@@ -12,8 +13,8 @@ function Main({ ...props }) {
         handleSubmit={handleSubmit}
         setColor={setColor}
       />
+
       <ColorsContainer list={list} />
-      <p>{color}</p>
     </main>
   );
 }

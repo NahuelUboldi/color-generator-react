@@ -1,16 +1,12 @@
 import React from 'react';
+import ColorsList from './ColorsList';
 
 function ColorsContainer({ list }) {
-  console.log(list);
   return (
     <section className='colors-container'>
-      {list.map((color) => {
-        const bgColor = `#${color}`;
-        return (
-          <div className='color-item' style={{ backgroundColor: bgColor }}>
-            {color}
-          </div>
-        );
+      {list.map((item, index) => {
+        // console.log(item, index);
+        return <ColorsList item={item} key={index} />;
       })}
     </section>
   );
